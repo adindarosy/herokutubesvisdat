@@ -1,0 +1,1 @@
+web: gunicorn covidworld:app --log.file -
