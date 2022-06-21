@@ -1,18 +1,6 @@
 import pandas as pd
-from bokeh.plotting import figure, show
-from bokeh.io import output_file, output_notebook
-from bokeh.models import ColumnDataSource
-from bokeh.models import HoverTool
-from bokeh.models.widgets import Tabs, Panel
-
-df = pd.read_csv('full_grouped.csv')
-
-data = df[df["Country/Region"].str.contains("Afghanistan")==True]
-data
-
-import pandas as pd
 from bokeh.plotting import figure
-from bokeh.models import ColumnDataSource, HoverTool, Select
+from bokeh.models import ColumnDataSource, HoverTool, Select,Column
 from bokeh.layouts import row, widgetbox
 from bokeh.palettes import Category20_16
 from bokeh.models.widgets import Tabs, Panel
@@ -21,8 +9,10 @@ from bokeh.io import curdoc
 from bokeh.layouts import column, row, WidgetBox
 from bokeh.models.widgets import CheckboxGroup, Slider, RangeSlider, Tabs
 
+df = pd.read_csv("full_grouped.csv")
+df["Date"] = pd.to_datetime(df["Date"])
 
-df = df[['Date','Country/Region','Confirmed','Deaths','Recovered','Active']]
+data = df[['Date','Country/Region','Confirmed','Deaths','Recovered','Active']]
 
 lokasi = list(df['Country/Region'].unique())
 
